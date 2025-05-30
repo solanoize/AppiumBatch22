@@ -7,6 +7,7 @@ import java.time.Duration;
 import org.testng.IExecutionListener;
 
 import com.juaracoding.appium.DriverSingleton;
+import com.juaracoding.appium.utils.ConfigReader;
 import com.juaracoding.appium.utils.EmailSender;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -18,6 +19,7 @@ public class Hook implements IExecutionListener {
 
   @Override
   public void onExecutionStart() {
+    ConfigReader.loadProperties("config.properties");
     System.err.println("TestNG is commencing execution");
     try {
       driver = DriverSingleton.createOrGetDriver();
@@ -33,6 +35,11 @@ public class Hook implements IExecutionListener {
   public void onExecutionFinish() {
     System.err.println("TestNG is finished execution");
     DriverSingleton.quitDriver();
-    EmailSender.send();
+
+    if (ConfigReader.get("automation.email.activate").equals("1")) {
+      System.err.println("Start sending email.");
+      EmailSender.send();
+    }
+
   }
 }

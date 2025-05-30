@@ -14,7 +14,6 @@ public class AndroidDeviceManager {
   static DesiredCapabilities capabilities;
 
   public static AndroidDriver build() throws MalformedURLException {
-    ConfigReader.loadProperties("config.properties");
 
     capabilities = new DesiredCapabilities();
     capabilities.setCapability("platformName", "Android");
