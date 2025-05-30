@@ -10,7 +10,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class LoginScreen {
-
   private AndroidDriver driver;
 
   @AndroidFindBy(xpath = "//android.widget.EditText[@content-desc=\"test-Username\"]")
@@ -19,7 +18,6 @@ public class LoginScreen {
   @AndroidFindBy(xpath = "//android.widget.EditText[@content-desc=\"test-Password\"]")
   private WebElement passwordField;
 
-  // button login
   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-LOGIN\"]")
   private WebElement loginButton;
 
