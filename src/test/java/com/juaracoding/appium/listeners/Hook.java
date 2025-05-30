@@ -29,7 +29,7 @@ public class Hook implements IExecutionListener {
   @Override
   public void onExecutionFinish() {
     System.err.println("TestNG is finished execution");
-    // DriverSingleton.quitDriver();
+    DriverSingleton.quitDriver();
 
     if (ConfigReader.get("automation.email.activate").equals("1")) {
       System.err.println("Start sending email.");

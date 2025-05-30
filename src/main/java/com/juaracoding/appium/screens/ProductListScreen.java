@@ -1,8 +1,12 @@
 package com.juaracoding.appium.screens;
 
 import java.time.Duration;
+import java.time.chrono.ThaiBuddhistEra;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.android.AndroidDriver;
@@ -21,8 +25,11 @@ public class ProductListScreen {
   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-ADD TO CART\"][1]")
   private WebElement cartButton1;
 
-  @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"1\"]")
+  @AndroidFindBy(className = "android.widget.TextView")
   private WebElement cartCount;
+
+  @AndroidFindBy(xpath = "//android.widget.ScrollView[@content-desc=\"test-PRODUCTS\"]")
+  private WebElement scrollView;
 
   public ProductListScreen(AndroidDriver androidDriver) {
     driver = androidDriver;
@@ -41,12 +48,29 @@ public class ProductListScreen {
     cartButton1.click();
   }
 
+  public void scroll() {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("elementId", scrollView);
+    params.put("direction", "down");
+    params.put("percent", 0.7);
+    params.put("speed", 1000);
+
+    js.executeScript("mobile: scrollGesture", params);
+  }
+
   public void addToCartProducts() throws InterruptedException {
-    Thread.sleep(1000);
-    System.out.println("Size " + cartButtons.size());
     for (WebElement cartButton : cartButtons) {
       cartButton.click();
-      System.out.println("test test test");
+      Thread.sleep(1000);
+    }
+  }
+
+  public void addToCartAndScroll(int limit) throws InterruptedException {
+    for (int i = 1; i <= limit; i++) {
+      addToCartProducts();
+      Thread.sleep(1000);
+      scroll();
       Thread.sleep(1000);
     }
   }

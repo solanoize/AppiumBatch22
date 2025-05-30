@@ -23,12 +23,13 @@ public class ProductListTest {
   @Test
   public void testStep01() throws InterruptedException {
     // productListScreen.addToCartProduct1();
-    productListScreen.addToCartProducts();
+    productListScreen.addToCartAndScroll(3);
   }
 
   @Test
   public void testStep02() throws InterruptedException {
-    // String actual = productListScreen.getCartCount();
+    String actual = productListScreen.getCartCount();
+    System.out.println(actual);
     // String expected = "1";
     // Assert.assertEquals(actual, expected);
 
