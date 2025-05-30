@@ -2,17 +2,12 @@ package com.juaracoding.appium.listeners;
 
 import java.net.MalformedURLException;
 import java.time.Duration;
-
-// import org.openqa.selenium.WebDriver;
 import org.testng.IExecutionListener;
-
 import com.juaracoding.appium.DriverSingleton;
 import com.juaracoding.appium.utils.ConfigReader;
 import com.juaracoding.appium.utils.EmailSender;
 
 import io.appium.java_client.android.AndroidDriver;
-
-// import com.juaracoding.test.DriverSingleton;
 
 public class Hook implements IExecutionListener {
   public static AndroidDriver driver;

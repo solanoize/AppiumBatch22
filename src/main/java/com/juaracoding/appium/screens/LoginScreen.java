@@ -23,8 +23,8 @@ public class LoginScreen {
   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-LOGIN\"]")
   private WebElement loginButton;
 
-  public LoginScreen(AndroidDriver driver) {
-    this.driver = driver;
+  public LoginScreen(AndroidDriver androidDriver) {
+    driver = androidDriver;
     PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(10)), this);
   }
 
